@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.InMemory
@@ -15,11 +16,11 @@ namespace DataAccess.Concrete.InMemory
         {
             _cars = new List<Car>
             {
-                new Car{ Id=1, BrandId=1, ColorId=1, ModelYear=2008, DailyPrice=95000, Description="Bir"},
-                new Car{ Id=2, BrandId=1, ColorId=2, ModelYear=2018, DailyPrice=150000, Description="İki"},
-                new Car{ Id=3, BrandId=2, ColorId=1, ModelYear=2010, DailyPrice=100000, Description="Üç"},
-                new Car{ Id=4, BrandId=2, ColorId=1, ModelYear=2015, DailyPrice=180000, Description="Dört"},
-                new Car{ Id=5, BrandId=2, ColorId=1, ModelYear=2021, DailyPrice=400000, Description="Beş"},
+                new Car{ CarId=1, BrandId=1, ColorId=1, ModelYear=2008, DailyPrice=95000, Description="Bir"},
+                new Car{ CarId=2, BrandId=1, ColorId=2, ModelYear=2018, DailyPrice=150000, Description="İki"},
+                new Car{ CarId=3, BrandId=2, ColorId=1, ModelYear=2010, DailyPrice=100000, Description="Üç"},
+                new Car{ CarId=4, BrandId=2, ColorId=1, ModelYear=2015, DailyPrice=180000, Description="Dört"},
+                new Car{ CarId=5, BrandId=2, ColorId=1, ModelYear=2021, DailyPrice=400000, Description="Beş"},
             };
         }
 
@@ -30,13 +31,23 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Car car)
         {
-            Car carToDelete = _cars.SingleOrDefault(c=>c.Id==car.Id);
+            Car carToDelete = _cars.SingleOrDefault(c=>c.CarId==car.CarId);
             _cars.Remove(carToDelete);
+        }
+
+        public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Car> GetAll()
         {
             return _cars;
+        }
+
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Car> GetById(int brandId)
@@ -46,7 +57,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Update(Car car)
         {
-            Car carToUpdate = _cars.SingleOrDefault(c => c.Id == car.Id);
+            Car carToUpdate = _cars.SingleOrDefault(c => c.CarId == car.CarId);
             carToUpdate.BrandId = car.BrandId;
             carToUpdate.ColorId = car.ColorId;
             carToUpdate.ModelYear = car.ModelYear;
