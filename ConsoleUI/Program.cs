@@ -24,10 +24,28 @@ namespace ConsoleUI
             //}
 
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var c in carManager.GetAll())
+
+            //Console.WriteLine("---Car Nesnesi İçin Add Metodu---");
+            //carManager.Update(new Car { CarId=4, BrandId=4, ColorId=3, DailyPrice=350, Description="Kiralık", ModelYear=2012});
+
+
+            //Console.WriteLine("\n---Car Nesnesi İçin GetAll metodu---");
+
+            //foreach (var c in carManager.GetAll())
+            //{
+            //    Console.WriteLine("\t=> "+c.CarId);
+            //}
+
+            //Console.WriteLine("\n---Car Nesnesi İçin GetById Metodu---");
+            //Console.WriteLine("\t=> " + carManager.GetById(4).BrandId);
+
+            foreach (var c in carManager.GetCarDetails())
             {
-                Console.WriteLine(c.Description);
+                Console.WriteLine(c.CarId + " "+c.BrandName+" "+c.ColorName+" " +c.DailyPrice+" "+ c.ModelYear);
             }
+
+ 
+            //getbyId, add, getall,delete,update
         }
     }
 }
