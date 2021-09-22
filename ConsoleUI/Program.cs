@@ -38,11 +38,21 @@ namespace ConsoleUI
 
             //Console.WriteLine("\n---Car Nesnesi İçin GetById Metodu---");
             //Console.WriteLine("\t=> " + carManager.GetById(4).BrandId);
-
-            foreach (var c in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success)
             {
-                Console.WriteLine(c.CarId + " "+c.BrandName+" "+c.ColorName+" " +c.DailyPrice+" "+ c.ModelYear);
+                foreach (var c in result.Data)
+                {
+                    Console.WriteLine(c.CarId + " " + c.BrandName + " " + c.ColorName + " " + c.DailyPrice + " " + c.ModelYear);
+                }
+                Console.WriteLine(result.Message);
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+
 
  
             //getbyId, add, getall,delete,update
